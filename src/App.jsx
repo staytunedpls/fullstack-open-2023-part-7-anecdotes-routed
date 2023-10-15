@@ -82,6 +82,8 @@ const CreateNew = (props) => {
   const info = useField("info");
   const navigate = useNavigate();
 
+  const removeKey = (k, { [k]: _, ...o }) => o;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     props.addNew({
@@ -103,15 +105,17 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input {...content} />
+          <input {...removeKey("reset", content)} />
         </div>
         <div>
           author
-          <input {...author} />
+          <input {...removeKey("reset", author)} />
+          {/* <input {...author} /> */}
         </div>
         <div>
           url for more info
-          <input {...info} />
+          <input {...removeKey("reset", info)} />
+          {/* <input {...info} /> */}
         </div>
         <button type="submit">create</button>
         <button
